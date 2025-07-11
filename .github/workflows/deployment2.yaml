@@ -1,0 +1,34 @@
+name: Deployment Exercise 2
+on:  push ## This workflow triggers on push events to the repository
+jobs:
+  lint:  ## This job is responsible for linting the code
+    runs-on: ubuntu-latest ## This job runs on the latest version of Ubuntu
+    steps: 
+      - name: Get code ## This step checks out the code from the repository
+        uses: actions/checkout@v3 ## This action checks out the repository code
+      - name: Install dependencies ## This step installs the necessary dependencies for the project
+        run: npm ci ## This command installs the dependencies defined in package-lock.json
+      - name: Lint
+        run: npm run lint ## This command runs the linter to check for code style issues
+  test:
+    needs: lint
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Install dependencies
+        run: npm ci
+      - name: Test code
+        run: npm run test
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Install dependencies
+        run: npm ci
+      - name: Build code
+        run: npm run build
+      - name: Deploy code
+        run: echo "Deploying..."
