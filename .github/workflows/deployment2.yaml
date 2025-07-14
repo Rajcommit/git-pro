@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest ## This job runs on the latest version of Ubuntu
     steps: 
       - name: Get code ## This step checks out the code from the repository
-        uses: actions/checkout@v3 ## This action checks out the repository code
+        uses: actions/checkout@v4 ## This action checks out the repository code
       - name: Install dependencies ## This step installs the necessary dependencies for the project
         run: npm ci ## This command installs the dependencies defined in package-lock.json
       - name: Lint
@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - name: Get code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Install dependencies
         run: npm ci
       - name: Test code
@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Install dependencies
         run: npm ci
       - name: Build code
